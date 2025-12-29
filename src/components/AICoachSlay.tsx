@@ -836,7 +836,7 @@ export default function AICoachSlay({ onClose }: AICoachSlayProps) {
                   ))}
                 </div>
 
-                <div className="mt-8 p-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl border border-purple-400/30">
+                <div className="mt-8 p-6 bg-gradient-to-br from-purple-500/20 to-yellow-400/20 rounded-2xl border border-purple-400/30">
                   <h3 className="text-lg font-semibold text-white mb-2">
                     💡 Example Questions
                   </h3>
@@ -899,9 +899,9 @@ export default function AICoachSlay({ onClose }: AICoachSlayProps) {
                     {/* Screen Content */}
                     <div className="h-full bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900 overflow-hidden relative">
                       {/* Chat Header */}
-                      <div className="pt-12 pb-4 px-4 bg-gradient-to-r from-purple-600/30 to-pink-600/30 border-b border-white/10">
+                      <div className="pt-12 pb-4 px-4 bg-gradient-to-r from-purple-600/30 to-yellow-400/30 border-b border-white/10">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-lg">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-yellow-400 flex items-center justify-center shadow-lg">
                             <Sparkles className="w-6 h-6 text-white" />
                           </div>
                           <div>
@@ -968,7 +968,7 @@ export default function AICoachSlay({ onClose }: AICoachSlayProps) {
                                 <div
                                   className={`max-w-[85%] rounded-2xl px-3 py-2.5 ${
                                     message.type === 'user'
-                                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
+                                      ? 'bg-gradient-to-r from-purple-600 to-purple-500 text-white'
                                       : 'bg-white/10 text-white border border-white/20'
                                   }`}
                                 >
@@ -1013,7 +1013,7 @@ export default function AICoachSlay({ onClose }: AICoachSlayProps) {
                             onChange={(e) => setInput(e.target.value)}
                             onKeyPress={handleKeyPress}
                             placeholder="Ask Slay AI..."
-                            className="flex-1 px-3 py-2.5 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-gray-400 text-sm focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 outline-none"
+                            className="flex-1 px-3 py-2.5 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-gray-400 text-sm focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/50 outline-none"
                             disabled={isTyping}
                           />
                           <motion.button
@@ -1021,7 +1021,7 @@ export default function AICoachSlay({ onClose }: AICoachSlayProps) {
                             disabled={!input.trim() || isTyping}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="p-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                            className="p-2.5 bg-gradient-to-r from-purple-600 to-yellow-400 text-white rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                           >
                             <Send className="w-4 h-4" />
                           </motion.button>
