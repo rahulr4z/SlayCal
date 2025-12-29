@@ -942,7 +942,7 @@ function BMIResultsDisplay({ results, currentWeight }: { results: any; currentWe
 // Calorie Measure Page - Opens Food Library
 function CalorieMeasurePage({ onClose }: { onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-50">
+    <div className="fixed inset-0 z-50 overflow-y-auto gradient-bg">
       <FoodLibrary onClose={onClose} />
     </div>
   );
