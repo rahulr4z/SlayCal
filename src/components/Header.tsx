@@ -6,9 +6,10 @@ interface HeaderProps {
   onLoginClick: () => void;
   onDashboardClick?: () => void;
   onAskSlayAI?: () => void;
+  onLogoClick?: () => void;
 }
 
-export default function Header({ onLoginClick, onDashboardClick, onAskSlayAI }: HeaderProps) {
+export default function Header({ onLoginClick, onDashboardClick, onAskSlayAI, onLogoClick }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -45,10 +46,11 @@ export default function Header({ onLoginClick, onDashboardClick, onAskSlayAI }: 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           <motion.div
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 cursor-pointer"
             whileHover={{ scale: 1.05 }}
+            onClick={onLogoClick}
           >
-            <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center overflow-hidden border border-white/20">
+            <div className="w-16 h-16 bg-gradient-to-br from-orange to-yellow rounded-lg flex items-center justify-center overflow-hidden">
               <img 
                 src={`${import.meta.env.BASE_URL}assets/slaycal-logo.svg`}
                 alt="SlayCal Logo" 

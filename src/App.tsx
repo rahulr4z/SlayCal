@@ -28,8 +28,6 @@ function App() {
   const handleTryNow = () => {
     // Skip auth and go directly to the workflow
     setShowIdealWeight(true);
-    // Scroll to top to show the workflow
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleAuthSuccess = (isGuest: boolean) => {
@@ -68,18 +66,49 @@ function App() {
                        !showAuth &&
                        !showQuickTools;
 
+  // Show header on landing page or when FoodTracker is open
+  const shouldShowHeader = isLandingPage || showFoodTracker;
+
   return (
     <div className="min-h-screen gradient-bg relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-20 right-10 w-32 h-32 bg-yellow-400/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-40 left-10 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl"></div>
       
-      {/* Only show header on landing page - hide when any quick tool is open */}
-      {isLandingPage && (
+      {/* Show header on landing page or when FoodTracker is open */}
+      {shouldShowHeader && (
         <Header 
           onLoginClick={() => setShowAuth(true)} 
-          onDashboardClick={handleTryNow}
-          onAskSlayAI={() => setShowAICoach(true)}
+          onDashboardClick={() => {
+            // Close any other open views first
+            setShowFoodLibrary(false);
+            setShowAICoach(false);
+            setShowIdealWeight(false);
+            setShowCuisinePrefs(false);
+            setShowMealRecommendations(false);
+            
+            if (userData) {
+              setShowFoodTracker(true);
+            } else {
+              // If no user data, start the workflow
+              setShowIdealWeight(true);
+            }
+          }}
+          onAskSlayAI={() => {
+            if (showFoodTracker) {
+              setShowFoodTracker(false);
+            }
+            setShowAICoach(true);
+          }}
+          onLogoClick={() => {
+            // Reset to landing page
+            setShowFoodTracker(false);
+            setShowFoodLibrary(false);
+            setShowAICoach(false);
+            setShowIdealWeight(false);
+            setShowCuisinePrefs(false);
+            setShowMealRecommendations(false);
+          }}
         />
       )}
       
@@ -155,3 +184,4 @@ function App() {
 }
 
 export default App;
+
