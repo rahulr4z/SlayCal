@@ -2,14 +2,33 @@
 
 A beautifully designed, responsive calorie tracking website with micro-animations, cute graphics, and emojis, specifically designed for Indian GenZ users.
 
-## Features
+## What SlayCal Can Do
 
-- 📊 **BMI Calculator** - Calculate your BMI with visual indicators and personalized recommendations
-- 🍽️ **Food Calculator** - Search and calculate calories for 100+ Indian foods
-- 📝 **Food Logger** - Track your daily calorie intake with meal categorization
-- 📈 **Analytics** - View weekly trends, macro breakdown, and progress insights
-- 👤 **Optional Authentication** - Guest mode available, or create an account to sync data
-- 🎯 **Personalized Recommendations** - Get calorie targets based on your goals and activity level
+SlayCal is a comprehensive calorie tracking and health management platform that empowers Indian GenZ users to take control of their nutrition and fitness goals. Here's what makes it special:
+
+### 📊 BMI & Health Calculator
+Calculate your Body Mass Index (BMI) with visual indicators and receive personalized health recommendations based on your body metrics. The calculator provides clear insights into your current health status and helps you understand where you stand.
+
+### 🍽️ Extensive Indian Food Database
+Search and calculate calories for 100+ popular Indian foods. Whether you're craving biryani, dosa, or your favorite street food, SlayCal has comprehensive nutritional information to help you make informed choices.
+
+### 📝 Smart Food Logger
+Track your daily calorie intake effortlessly with intuitive meal categorization. Log breakfast, lunch, dinner, and snacks throughout the day. The system automatically calculates your total intake and helps you stay within your calorie goals.
+
+### 📈 Advanced Analytics & Insights
+View detailed weekly trends, macro breakdown (proteins, carbs, fats), and progress insights. Visualize your eating patterns with beautiful charts and graphs that make it easy to understand your nutritional habits over time.
+
+### 🎯 Personalized Recommendations
+Get intelligent calorie targets based on your personal goals, activity level, and body metrics. SlayCal adapts to your lifestyle and provides recommendations that fit your unique needs.
+
+### 🍲 Meal Combination Suggestions
+Discover optimal meal combinations that help you meet your daily nutritional goals. The AI-powered system suggests balanced meals from the food database that align with your calorie and macro targets.
+
+### 👤 Flexible User Experience
+Use SlayCal in guest mode for quick tracking, or create an account to sync your data across devices. Your choice, your convenience.
+
+### 🎨 Beautiful, Modern Interface
+Enjoy a delightful user experience with smooth micro-animations, engaging graphics, and a design language that speaks to GenZ. Every interaction is crafted to be intuitive and enjoyable.
 
 ## Tech Stack
 
@@ -20,34 +39,6 @@ A beautifully designed, responsive calorie tracking website with micro-animation
 - **Recharts** for data visualization
 - **Zustand** for state management
 - **React Hook Form** for form handling
-
-## Getting Started
-
-1. Install dependencies:
-```bash
-npm install
-```
-
-2. Start the development server:
-```bash
-npm run dev
-```
-
-3. Build for production:
-```bash
-npm run build
-```
-
-## Project Structure
-
-```
-src/
-├── components/       # React components
-├── data/           # Food database
-├── store/          # State management
-├── utils/          # Utility functions
-└── App.tsx         # Main app component
-```
 
 ## Design System
 
