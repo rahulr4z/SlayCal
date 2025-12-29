@@ -8,9 +8,10 @@ import { getMealCombinations } from '../utils/mealCombinations';
 
 interface InteractiveCardsProps {
   onQuickToolToggle?: (isOpen: boolean) => void;
+  onOpenFoodLibrary?: () => void;
 }
 
-export default function InteractiveCards({ onQuickToolToggle }: InteractiveCardsProps) {
+export default function InteractiveCards({ onQuickToolToggle, onOpenFoodLibrary }: InteractiveCardsProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [showBMICalculator, setShowBMICalculator] = useState(false);
@@ -18,8 +19,8 @@ export default function InteractiveCards({ onQuickToolToggle }: InteractiveCards
   const [showMealLibrary, setShowMealLibrary] = useState(false);
   const [showCalorieComparison, setShowCalorieComparison] = useState(false);
 
-  // Track if any quick tool is open
-  const isAnyQuickToolOpen = showBMICalculator || showCalorieMeasure || showMealLibrary || showCalorieComparison;
+  // Track if any quick tool is open (excluding Calorie Measure if it opens Food Library)
+  const isAnyQuickToolOpen = showBMICalculator || (showCalorieMeasure && !onOpenFoodLibrary) || showMealLibrary || showCalorieComparison;
 
   // Notify parent when quick tools state changes
   useEffect(() => {
@@ -121,7 +122,13 @@ export default function InteractiveCards({ onQuickToolToggle }: InteractiveCards
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.4 }}
             whileHover={{ scale: 1.02 }}
-            onClick={() => setShowCalorieMeasure(true)}
+            onClick={() => {
+              if (onOpenFoodLibrary) {
+                onOpenFoodLibrary();
+              } else {
+                setShowCalorieMeasure(true);
+              }
+            }}
             className="cursor-pointer mt-16 md:mt-20"
           >
             <div className="relative w-full max-w-[300px] mx-auto mb-6">

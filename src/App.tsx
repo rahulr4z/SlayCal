@@ -92,7 +92,10 @@ function App() {
           <>
             <Hero onTryNow={handleTryNow} onFoodLibrary={() => setShowFoodLibrary(true)} />
             <FourSteps />
-            <InteractiveCards onQuickToolToggle={setShowQuickTools} />
+            <InteractiveCards 
+              onQuickToolToggle={setShowQuickTools}
+              onOpenFoodLibrary={() => setShowFoodLibrary(true)}
+            />
             <Footer onTalkToAI={() => setShowAICoach(true)} />
           </>
         ) : showFoodLibrary ? (
