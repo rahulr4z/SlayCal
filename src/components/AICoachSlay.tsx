@@ -928,7 +928,7 @@ export default function AICoachSlay({ onClose }: AICoachSlayProps) {
                           >
                             <div className="mb-6">
                               <img
-                                src="/assets/slaycal-logo.svg"
+                                src={`${import.meta.env.BASE_URL}assets/slaycal-logo.svg`}
                                 alt="Slay AI Logo"
                                 className="w-24 h-24 mx-auto mb-4"
                               />

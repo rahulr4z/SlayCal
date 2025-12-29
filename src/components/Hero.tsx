@@ -14,7 +14,7 @@ export default function Hero({ onTryNow, onFoodLibrary }: HeroProps) {
 
   useEffect(() => {
     // Load the Lottie JSON animation
-    fetch('/assets/Food Choice.json')
+    fetch(`${import.meta.env.BASE_URL}assets/Food Choice.json`)
       .then(response => response.json())
       .then(data => {
         setAnimationData(data);

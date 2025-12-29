@@ -50,7 +50,7 @@ export default function Header({ onLoginClick, onDashboardClick, onAskSlayAI }: 
           >
             <div className="w-16 h-16 bg-gradient-to-br from-orange to-yellow rounded-lg flex items-center justify-center overflow-hidden">
               <img 
-                src="/assets/slaycal-logo.svg" 
+                src={`${import.meta.env.BASE_URL}assets/slaycal-logo.svg`}
                 alt="SlayCal Logo" 
                 className="w-full h-full object-contain p-1"
               />
