@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Calculator, Share2, Printer } from 'lucide-react';
+import { X, Share2, Printer } from 'lucide-react';
 import { useState, useMemo } from 'react';
 
 interface IdealWeightCalculatorProps {

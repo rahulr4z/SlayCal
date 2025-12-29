@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Check, Search } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { X, Search } from 'lucide-react';
 import { useState } from 'react';
 import { getMealPlan } from '../utils/mealCombinations';
 
@@ -320,9 +320,6 @@ export default function CuisinePreferences({ onClose, userData, onComplete }: Cu
                              meal.includes('Snack') ? '🍿' :
                              meal.includes('Lunch') ? '☀️' :
                              meal.includes('Dinner') ? '🌙' : '🍽️';
-                const colors = isSelected 
-                  ? 'from-yellow-400 via-orange-500 to-pink-500' 
-                  : '';
                 
                 return (
                   <motion.button

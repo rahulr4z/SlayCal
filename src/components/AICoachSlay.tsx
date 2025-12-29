@@ -459,7 +459,6 @@ export default function AICoachSlay({ onClose }: AICoachSlayProps) {
     let response = `📊 **Comparison:**\n\n`;
     
     foods.slice(0, 5).forEach((food, idx) => {
-      const value = food[comparisonType as keyof FoodItem] as number;
       response += `${idx + 1}. ${food.emoji || '🍽️'} **${food.name}**\n`;
       response += `   • Calories: ${food.calories} kcal\n`;
       response += `   • Protein: ${food.protein}g\n`;

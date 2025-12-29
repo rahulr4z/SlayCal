@@ -1,10 +1,10 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, X, Edit2, Trash2, Calendar, TrendingUp, Award, Flame, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Plus, X, Trash2, Award, Flame, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FoodItem, foodDatabase } from '../data/foodDatabase';
 import { getMealCombinations, MealCombination } from '../utils/mealCombinations';
 // Using CSS-based circular progress instead
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface FoodTrackerProps {
   userData: any;
