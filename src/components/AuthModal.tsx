@@ -273,7 +273,7 @@ export default function AuthModal({ onClose, onSuccess }: AuthModalProps) {
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full py-4 bg-gradient-to-r from-orange to-yellow text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
+              className="w-full py-4 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
             >
               {isLogin ? 'Login' : 'Sign Up'}
             </motion.button>
@@ -392,7 +392,7 @@ function PasswordResetModal({ onClose, email }: PasswordResetModalProps) {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 bg-gradient-to-r from-orange to-yellow text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
+                className="w-full py-4 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
               >
                 Send Reset Link
               </motion.button>

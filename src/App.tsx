@@ -79,11 +79,9 @@ function App() {
         <Header 
           onLoginClick={() => setShowAuth(true)} 
           onDashboardClick={() => {
-            if (userData) {
-              setShowFoodTracker(true);
-            } else {
-              setShowAuth(true);
-            }
+            // Start the Try Now workflow directly
+            setShowIdealWeight(true);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           onAskSlayAI={() => setShowAICoach(true)}
         />

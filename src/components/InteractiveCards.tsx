@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useMemo, useEffect } from 'react';
-import { Calculator, Scale, X, Calendar, ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calculator, Scale, X, ArrowLeft, ChevronDown, ChevronUp, Share2, Printer } from 'lucide-react';
 import FoodLibrary from './FoodLibrary';
 import { foodDatabase, FoodItem } from '../data/foodDatabase';
 import { getMealCombinations } from '../utils/mealCombinations';
@@ -770,6 +770,26 @@ function BMIResultsDisplay({ results, currentWeight }: { results: any; currentWe
     return progress;
   }, [results, currentWeight]);
 
+  const handleShare = (results: any) => {
+    const activityLabels: Record<string, string> = {
+      'sedentary': 'Sedentary',
+      'lightly-active': 'Lightly Active',
+      'moderately-active': 'Moderately Active',
+      'very-active': 'Very Active',
+      'extremely-active': 'Extremely Active'
+    };
+    const text = `My BMI: ${results.bmi} (${results.bmiInfo.category})\nIdeal Weight Range: ${results.minIdealWeight} - ${results.maxIdealWeight} kg\nTarget Weight: ${results.targetWeight} kg\nDaily Calories: ${results.dailyCalorieAllowance} cal\nActivity Level: ${activityLabels[results.activityLevel] || results.activityLevel}\nTime to Goal: ${results.monthsToGoal} months\n\nTrack your weight loss journey with SlayCal! 🎯`;
+    if (navigator.share) {
+      navigator.share({
+        title: 'My Weight Loss Plan',
+        text: text,
+      });
+    } else {
+      navigator.clipboard.writeText(text);
+      alert('Results copied to clipboard!');
+    }
+  };
+
   return (
     <motion.div
       key="results"
@@ -787,26 +807,25 @@ function BMIResultsDisplay({ results, currentWeight }: { results: any; currentWe
         >
           <span className="text-yellow-400">Your Results</span>
         </motion.h2>
-      </div>
-
-      {/* BMI Status - Compact */}
-      <motion.div
-        initial={{ scale: 0.9, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        className="glass rounded-2xl p-6 mb-6 border-2 border-white/20"
-      >
-        <div className="flex items-center justify-center gap-4">
-          <span className="text-5xl">{results.bmiInfo.emoji}</span>
-          <div>
-            <div className={`text-4xl font-bold ${results.bmiInfo.color}`}>
-              {results.bmi}
-            </div>
-            <div className={`text-lg font-semibold ${results.bmiInfo.color} px-4 py-1 rounded-full bg-white/10 inline-block mt-2`}>
-              {results.bmiInfo.category}
-            </div>
-          </div>
+        <div className="flex gap-2">
+          <motion.button
+            onClick={() => handleShare(results)}
+            whileTap={{ scale: 0.9 }}
+            className="p-2 glass border border-white/20 rounded-lg text-white active:bg-white/10 transition-all"
+            title="Share"
+          >
+            <Share2 className="w-5 h-5" />
+          </motion.button>
+          <motion.button
+            onClick={() => window.print()}
+            whileTap={{ scale: 0.9 }}
+            className="p-2 glass border border-white/20 rounded-lg text-white active:bg-white/10 transition-all"
+            title="Print"
+          >
+            <Printer className="w-5 h-5" />
+          </motion.button>
         </div>
-      </motion.div>
+      </div>
 
       {/* Ideal Weight Range - Most Important Widget */}
       <motion.div
@@ -865,7 +884,7 @@ function BMIResultsDisplay({ results, currentWeight }: { results: any; currentWe
               className="overflow-hidden"
             >
               <div className="space-y-4">
-          {monthlyProgress.map((item, index) => {
+                {monthlyProgress.map((item, index) => {
             const isCurrent = item.month === 0;
             const isLast = index === monthlyProgress.length - 1;
             const progressPercent = item.month === 0 
@@ -878,40 +897,52 @@ function BMIResultsDisplay({ results, currentWeight }: { results: any; currentWe
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 + index * 0.1 }}
-                className={`glass rounded-xl p-4 border-2 ${
-                  isCurrent ? 'border-yellow-400/50 bg-yellow-400/10' : 
-                  isLast ? 'border-green-400/50 bg-green-400/10' : 
-                  'border-purple-300/30'
-                }`}
+                className="relative"
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{isCurrent ? '📍' : isLast ? '🎯' : '📅'}</span>
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm ${
+                      isCurrent 
+                        ? 'bg-yellow-400 text-gray-900' 
+                        : isLast
+                        ? 'bg-green-400 text-white'
+                        : 'bg-purple-300/30 text-white border-2 border-purple-300'
+                    }`}>
+                      {isCurrent ? '📍' : isLast ? '🎯' : item.month}
+                    </div>
                     <div>
-                      <div className="font-bold text-white text-lg">{item.monthLabel}</div>
-                      <div className="text-sm text-gray-400">Weight: {item.weight} kg</div>
+                      <div className="text-white font-semibold">{item.monthLabel}</div>
+                      {item.month > 0 && (
+                        <div className="text-xs text-gray-400">
+                          {item.weightLoss} kg lost
+                        </div>
+                      )}
                     </div>
                   </div>
-                  {item.month > 0 && (
-                    <div className="text-right">
-                      <div className="text-yellow-400 font-bold text-lg">-{item.weightLoss.toFixed(1)} kg</div>
-                      <div className="text-xs text-gray-400">Loss</div>
-                    </div>
-                  )}
+                  <div className="text-right">
+                    <div className="text-xl font-bold text-white">{item.weight} kg</div>
+                    {isLast && (
+                      <div className="text-xs text-green-400">Target reached!</div>
+                    )}
+                  </div>
                 </div>
                 {item.month > 0 && (
-                  <div className="mt-3">
-                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${Math.min(progressPercent, 100)}%` }}
-                        transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
-                        className={`h-full rounded-full ${
-                          isLast ? 'bg-gradient-to-r from-green-400 to-green-300' : 
-                          'bg-gradient-to-r from-yellow-400 to-purple-300'
-                        }`}
-                      />
-                    </div>
+                  <div className="relative h-2 bg-white/10 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${Math.min(progressPercent, 100)}%` }}
+                      transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
+                      className={`h-full rounded-full ${
+                        isLast 
+                          ? 'bg-gradient-to-r from-green-400 to-emerald-400'
+                          : 'bg-gradient-to-r from-yellow-400 to-yellow-300'
+                      }`}
+                    />
+                  </div>
+                )}
+                {!isLast && (
+                  <div className="flex justify-center my-2">
+                    <div className="text-gray-500 text-xl">↓</div>
                   </div>
                 )}
               </motion.div>
@@ -923,25 +954,63 @@ function BMIResultsDisplay({ results, currentWeight }: { results: any; currentWe
         </AnimatePresence>
       </motion.div>
 
-      {/* Secondary Metrics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div className="glass rounded-xl p-4 border-2 border-white/20">
-          <div className="text-2xl font-bold text-yellow-400 mb-1">
-            {results.dailyCalorieAllowance}
+      {/* Secondary Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {/* Daily Calorie Allowance */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="glass rounded-2xl p-6 border-2 border-yellow-400/30 bg-gradient-to-br from-yellow-400/10 to-transparent"
+        >
+          <div className="text-center">
+            <div className="text-4xl font-bold text-yellow-400 mb-2">
+              {results.dailyCalorieAllowance}
+            </div>
+            <div className="text-base text-gray-300 font-semibold mb-1">Daily Calories</div>
+            <div className="text-xs text-gray-400">
+              Your personalized target
+            </div>
           </div>
-          <div className="text-sm text-gray-300">Daily Calorie Allowance</div>
-          <div className="text-xs text-gray-400 mt-1">
-            BMR: {results.bmr} cal • TDEE: {results.tdee} cal
-          </div>
-        </div>
+        </motion.div>
 
-        <div className="glass rounded-xl p-4 border-2 border-white/20">
-          <Calendar className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-white mb-1">
-            {results.monthsToGoal} months
+        {/* BMI Status */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="glass rounded-2xl p-6 border-2 border-purple-300/30 bg-gradient-to-br from-purple-300/10 to-transparent"
+        >
+          <div className="text-center">
+            <div className="text-3xl mb-2">{results.bmiInfo.emoji}</div>
+            <div className={`text-3xl font-bold ${results.bmiInfo.color} mb-2`}>
+              {results.bmi}
+            </div>
+            <div className={`text-sm font-semibold ${results.bmiInfo.color}`}>
+              {results.bmiInfo.category}
+            </div>
           </div>
-          <div className="text-sm text-gray-300">Estimated Time to Goal</div>
-        </div>
+        </motion.div>
+
+        {/* Time to Goal */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="glass rounded-2xl p-6 border-2 border-yellow-400/30 bg-gradient-to-br from-yellow-400/10 to-transparent"
+        >
+          <div className="text-center">
+            <div className="text-4xl font-bold text-yellow-400 mb-2">
+              {results.monthsToGoal}
+            </div>
+            <div className="text-base text-gray-300 font-semibold mb-1">
+              {results.monthsToGoal === 1 ? 'Month' : 'Months'}
+            </div>
+            <div className="text-xs text-gray-400">
+              To reach your goal
+            </div>
+          </div>
+        </motion.div>
       </div>
     </motion.div>
   );
