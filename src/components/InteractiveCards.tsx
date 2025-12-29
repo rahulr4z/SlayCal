@@ -333,11 +333,11 @@ export default function InteractiveCards({ onQuickToolToggle, onOpenFoodLibrary 
                         <span key={i} className="text-2xl">{emoji}</span>
                       ))}
                     </div>
-                    <div className="mt-auto bg-white/80 rounded-xl p-6 border border-gray-200 shadow-lg">
+                    <div className="mt-auto bg-gradient-to-br from-pink-100/90 to-orange-100/90 rounded-xl p-6 border border-pink-200/50 shadow-lg">
                       <div className="text-center">
                         <div className="text-4xl font-bold text-orange-500 mb-2">VS</div>
-                        <div className="text-sm text-gray-600 font-medium">Side by Side</div>
-                        <div className="text-xs text-gray-500 mt-1">Nutrition Comparison</div>
+                        <div className="text-sm text-gray-700 font-medium">Side by Side</div>
+                        <div className="text-xs text-gray-600 mt-1">Nutrition Comparison</div>
                       </div>
                     </div>
                   </div>
