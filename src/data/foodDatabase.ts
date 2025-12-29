@@ -13,29 +13,6 @@ export interface FoodItem {
   emoji?: string;
 }
 
-// Helper function to determine dietary type
-const getDietaryType = (name: string, description?: string): 'veg' | 'non-veg' | 'eggetarian' => {
-  const lower = name.toLowerCase();
-  if (lower.includes('egg') || lower.includes('omelette') || lower.includes('bhurji')) return 'eggetarian';
-  if (lower.includes('chicken') || lower.includes('mutton') || lower.includes('fish') || lower.includes('prawn') || lower.includes('pork') || lower.includes('beef') || lower.includes('keema') || lower.includes('meat')) return 'non-veg';
-  return 'veg';
-};
-
-// Helper function to determine meal types
-const getMealTypes = (category: string, name: string): ('breakfast' | 'lunch' | 'dinner' | 'snack')[] => {
-  const lower = name.toLowerCase();
-  if (category === 'beverage' || category === 'dessert' || category === 'snack') {
-    return ['snack'];
-  }
-  if (lower.includes('breakfast') || lower.includes('idli') || lower.includes('dosa') || lower.includes('poha') || lower.includes('upma') || lower.includes('pongal') || lower.includes('paratha') || lower.includes('poori') || lower.includes('thepla') || lower.includes('dhokla') || lower.includes('appam') || lower.includes('puttu')) {
-    return ['breakfast'];
-  }
-  if (category === 'side') {
-    return ['lunch', 'dinner'];
-  }
-  return ['lunch', 'dinner'];
-};
-
 export const foodDatabase: FoodItem[] = [
   // North Indian - Breads
   { id: 1, name: 'Chapati/Roti', calories: 120, protein: 3, carbs: 24, fat: 2, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['lunch', 'dinner'], category: 'bread', servingSize: '1 medium (40g)', emoji: '🫓' },
@@ -141,8 +118,8 @@ export const foodDatabase: FoodItem[] = [
   { id: 85, name: 'Chingri Malai Curry', calories: 320, protein: 22, carbs: 12, fat: 21, cuisine: 'Bengali', dietaryType: 'non-veg', suitableMealTypes: ['lunch', 'dinner'], category: 'curry', servingSize: '1 bowl (200g)', emoji: '🦐' },
   { id: 86, name: 'Begun Bhaja', calories: 140, protein: 2, carbs: 14, fat: 9, cuisine: 'Bengali', dietaryType: 'veg', suitableMealTypes: ['lunch', 'dinner'], category: 'curry', servingSize: '100g', emoji: '🍆' },
   { id: 87, name: 'Aloo Posto', calories: 220, protein: 5, carbs: 24, fat: 12, cuisine: 'Bengali', dietaryType: 'veg', suitableMealTypes: ['lunch', 'dinner'], category: 'curry', servingSize: '1 bowl (150g)', emoji: '🥔' },
-  { id: 88, name: 'Mishti Doi', calories: 180, protein: 6, carbs: 28, fat: 5, cuisine: 'Bengali', dietaryType: 'veg', suitableMealTypes: ['snack', 'dessert'], category: 'dessert', servingSize: '1 bowl (150g)', emoji: '🥛' },
-  { id: 89, name: 'Rasgulla', calories: 186, protein: 4, carbs: 40, fat: 1, cuisine: 'Bengali', dietaryType: 'veg', suitableMealTypes: ['snack', 'dessert'], category: 'dessert', servingSize: '2 pieces (100g)', emoji: '🍡' },
+  { id: 88, name: 'Mishti Doi', calories: 180, protein: 6, carbs: 28, fat: 5, cuisine: 'Bengali', dietaryType: 'veg', suitableMealTypes: ['snack'], category: 'dessert', servingSize: '1 bowl (150g)', emoji: '🥛' },
+  { id: 89, name: 'Rasgulla', calories: 186, protein: 4, carbs: 40, fat: 1, cuisine: 'Bengali', dietaryType: 'veg', suitableMealTypes: ['snack'], category: 'dessert', servingSize: '2 pieces (100g)', emoji: '🍡' },
 
   // Gujarati Cuisine
   { id: 90, name: 'Thepla', calories: 200, protein: 5, carbs: 30, fat: 7, cuisine: 'Gujarati', dietaryType: 'veg', suitableMealTypes: ['breakfast', 'lunch'], category: 'bread', servingSize: '2 pieces (80g)', emoji: '🫓' },
@@ -271,15 +248,15 @@ export const foodDatabase: FoodItem[] = [
   { id: 190, name: 'Tamarind Chutney', calories: 50, protein: 0.3, carbs: 13, fat: 0.1, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['lunch', 'dinner', 'snack'], category: 'side', servingSize: '2 tbsp (30g)', emoji: '🍯' },
 
   // Desserts & Sweets
-  { id: 191, name: 'Gulab Jamun', calories: 260, protein: 4, carbs: 50, fat: 6, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack', 'dessert'], category: 'dessert', servingSize: '2 pieces (100g)', emoji: '🍡' },
-  { id: 192, name: 'Jalebi', calories: 280, protein: 2, carbs: 60, fat: 3, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack', 'dessert'], category: 'dessert', servingSize: '4 pieces (100g)', emoji: '🍩' },
-  { id: 193, name: 'Ladoo', calories: 320, protein: 6, carbs: 48, fat: 12, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack', 'dessert'], category: 'dessert', servingSize: '2 pieces (80g)', emoji: '🍡' },
-  { id: 194, name: 'Barfi', calories: 280, protein: 6, carbs: 44, fat: 9, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack', 'dessert'], category: 'dessert', servingSize: '2 pieces (80g)', emoji: '🍬' },
-  { id: 195, name: 'Halwa', calories: 320, protein: 4, carbs: 52, fat: 11, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack', 'dessert'], category: 'dessert', servingSize: '1 bowl (100g)', emoji: '🍯' },
-  { id: 196, name: 'Kheer', calories: 220, protein: 6, carbs: 38, fat: 5, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack', 'dessert'], category: 'dessert', servingSize: '1 bowl (150g)', emoji: '🍚' },
-  { id: 197, name: 'Rasmalai', calories: 240, protein: 6, carbs: 36, fat: 8, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack', 'dessert'], category: 'dessert', servingSize: '2 pieces (120g)', emoji: '🍡' },
-  { id: 198, name: 'Kulfi', calories: 200, protein: 5, carbs: 28, fat: 8, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack', 'dessert'], category: 'dessert', servingSize: '1 piece (100g)', emoji: '🍦' },
-  { id: 199, name: 'Ice Cream', calories: 140, protein: 3, carbs: 18, fat: 7, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack', 'dessert'], category: 'dessert', servingSize: '1 scoop (75g)', emoji: '🍨' },
+  { id: 191, name: 'Gulab Jamun', calories: 260, protein: 4, carbs: 50, fat: 6, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack'], category: 'dessert', servingSize: '2 pieces (100g)', emoji: '🍡' },
+  { id: 192, name: 'Jalebi', calories: 280, protein: 2, carbs: 60, fat: 3, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack'], category: 'dessert', servingSize: '4 pieces (100g)', emoji: '🍩' },
+  { id: 193, name: 'Ladoo', calories: 320, protein: 6, carbs: 48, fat: 12, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack'], category: 'dessert', servingSize: '2 pieces (80g)', emoji: '🍡' },
+  { id: 194, name: 'Barfi', calories: 280, protein: 6, carbs: 44, fat: 9, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack'], category: 'dessert', servingSize: '2 pieces (80g)', emoji: '🍬' },
+  { id: 195, name: 'Halwa', calories: 320, protein: 4, carbs: 52, fat: 11, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack'], category: 'dessert', servingSize: '1 bowl (100g)', emoji: '🍯' },
+  { id: 196, name: 'Kheer', calories: 220, protein: 6, carbs: 38, fat: 5, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack'], category: 'dessert', servingSize: '1 bowl (150g)', emoji: '🍚' },
+  { id: 197, name: 'Rasmalai', calories: 240, protein: 6, carbs: 36, fat: 8, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack'], category: 'dessert', servingSize: '2 pieces (120g)', emoji: '🍡' },
+  { id: 198, name: 'Kulfi', calories: 200, protein: 5, carbs: 28, fat: 8, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack'], category: 'dessert', servingSize: '1 piece (100g)', emoji: '🍦' },
+  { id: 199, name: 'Ice Cream', calories: 140, protein: 3, carbs: 18, fat: 7, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['snack'], category: 'dessert', servingSize: '1 scoop (75g)', emoji: '🍨' },
 
   // Beverages
   { id: 200, name: 'Tea with Milk & Sugar', calories: 60, protein: 2, carbs: 10, fat: 2, cuisine: 'North Indian', dietaryType: 'veg', suitableMealTypes: ['breakfast', 'snack'], category: 'beverage', servingSize: '1 cup (150ml)', emoji: '☕' },

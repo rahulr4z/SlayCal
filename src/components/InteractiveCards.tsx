@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useMemo, useEffect } from 'react';
-import { Calculator, Scale, X, TrendingDown, Calendar, Search, BookOpen, ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calculator, Scale, X, Calendar, ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
 import FoodLibrary from './FoodLibrary';
 import { foodDatabase, FoodItem } from '../data/foodDatabase';
 import { getMealCombinations } from '../utils/mealCombinations';
@@ -731,7 +731,6 @@ function BMIResultsDisplay({ results, currentWeight }: { results: any; currentWe
   // Generate month-on-month weight loss projection
   const monthlyProgress = useMemo(() => {
     const progress = [];
-    const weightToLose = parseFloat(results.weightToLose);
     const monthlyLoss = 3; // kg per month (0.75 kg per week * 4)
     const currentW = currentWeight;
     const targetW = parseFloat(results.targetWeight);

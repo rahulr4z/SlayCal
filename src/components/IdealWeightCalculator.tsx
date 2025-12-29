@@ -386,7 +386,6 @@ function ResultsDisplay({ results, currentWeight, onComplete, onShare, onPrint }
   // Generate month-on-month weight loss projection
   const monthlyProgress = useMemo(() => {
     const progress = [];
-    const weightToLose = parseFloat(results.weightToLose);
     const monthlyLoss = 3; // kg per month (0.75 kg per week * 4)
     const currentW = currentWeight;
     const targetW = parseFloat(results.targetWeight);
