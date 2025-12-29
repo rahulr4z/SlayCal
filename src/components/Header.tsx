@@ -48,7 +48,7 @@ export default function Header({ onLoginClick, onDashboardClick, onAskSlayAI }: 
             className="flex items-center gap-3"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="w-16 h-16 bg-gradient-to-br from-orange to-yellow rounded-lg flex items-center justify-center overflow-hidden">
+            <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center overflow-hidden border border-white/20">
               <img 
                 src={`${import.meta.env.BASE_URL}assets/slaycal-logo.svg`}
                 alt="SlayCal Logo" 
