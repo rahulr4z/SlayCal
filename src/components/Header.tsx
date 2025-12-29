@@ -77,7 +77,7 @@ export default function Header({ onLoginClick, onDashboardClick, onAskSlayAI }: 
                 onClick={onAskSlayAI}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 py-2.5 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg"
+                className="px-6 py-2.5 bg-gradient-to-r from-teal-600 to-green-600 hover:from-teal-700 hover:to-green-700 text-white rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg"
               >
                 <Sparkles className="w-4 h-4" />
                 Ask Slay AI
@@ -139,7 +139,7 @@ export default function Header({ onLoginClick, onDashboardClick, onAskSlayAI }: 
                     setMobileMenuOpen(false);
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white rounded-lg font-medium transition-all duration-300 text-left flex items-center gap-2"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-teal-600 to-green-600 hover:from-teal-700 hover:to-green-700 text-white rounded-lg font-medium transition-all duration-300 text-left flex items-center gap-2"
                 >
                   <Sparkles className="w-4 h-4" />
                   Ask Slay AI

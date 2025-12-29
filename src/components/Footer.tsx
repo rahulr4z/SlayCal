@@ -60,7 +60,7 @@ export default function Footer({ onTalkToAI }: FooterProps) {
             className="mt-6 px-8 py-4 bg-gradient-to-r from-teal-600 to-green-600 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 mx-auto"
           >
             <MessageCircle className="w-5 h-5" />
-            Talk to AI Coach Slay
+            Ask Slay AI
           </motion.button>
         </motion.div>
 
