@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body text-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Schoolbell', cursive !important;
+  }
+  
+  .font-heading {
+    font-family: 'Schoolbell', cursive !important;
+  }
+}
+
+@layer utilities {
+  .gradient-bg {
+    background: linear-gradient(180deg, #1E1B4B 0%, #312E81 50%, #1E1B4B 100%);
+  }
+  
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
