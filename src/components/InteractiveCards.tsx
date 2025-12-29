@@ -126,6 +126,7 @@ export default function InteractiveCards({ onQuickToolToggle, onOpenFoodLibrary 
               if (onOpenFoodLibrary) {
                 onOpenFoodLibrary();
               } else {
+                // Fallback: show modal only if callback not provided
                 setShowCalorieMeasure(true);
               }
             }}

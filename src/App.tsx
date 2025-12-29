@@ -87,7 +87,7 @@ function App() {
         />
       )}
       
-      <main>
+      <main className="min-h-screen">
         {!showFoodLibrary && !showAICoach && !showIdealWeight && !showCuisinePrefs && !showMealRecommendations && !showFoodTracker ? (
           <>
             <Hero onTryNow={handleTryNow} onFoodLibrary={() => setShowFoodLibrary(true)} />
