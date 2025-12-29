@@ -76,13 +76,7 @@ function App() {
       {isLandingPage && (
         <Header 
           onLoginClick={() => setShowAuth(true)} 
-          onDashboardClick={() => {
-            if (userData) {
-              setShowFoodTracker(true);
-            } else {
-              setShowAuth(true);
-            }
-          }}
+          onDashboardClick={handleTryNow}
           onAskSlayAI={() => setShowAICoach(true)}
         />
       )}
