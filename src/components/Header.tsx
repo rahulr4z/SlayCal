@@ -6,10 +6,9 @@ interface HeaderProps {
   onLoginClick: () => void;
   onDashboardClick?: () => void;
   onAskSlayAI?: () => void;
-  onLogoClick?: () => void;
 }
 
-export default function Header({ onLoginClick, onDashboardClick, onAskSlayAI, onLogoClick }: HeaderProps) {
+export default function Header({ onLoginClick, onDashboardClick, onAskSlayAI }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -46,9 +45,8 @@ export default function Header({ onLoginClick, onDashboardClick, onAskSlayAI, on
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           <motion.div
-            className="flex items-center gap-3 cursor-pointer"
+            className="flex items-center gap-3"
             whileHover={{ scale: 1.05 }}
-            onClick={onLogoClick}
           >
             <div className="w-16 h-16 bg-gradient-to-br from-orange to-yellow rounded-lg flex items-center justify-center overflow-hidden">
               <img 

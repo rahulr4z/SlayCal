@@ -28,6 +28,8 @@ function App() {
   const handleTryNow = () => {
     // Skip auth and go directly to the workflow
     setShowIdealWeight(true);
+    // Scroll to top to show the workflow
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleAuthSuccess = (isGuest: boolean) => {
@@ -56,7 +58,7 @@ function App() {
     setShowFoodTracker(true);
   };
 
-  // Check if we're on the landing page (no quick tools open)
+  // Check if we're on the landing page (no workflow or quick tools open)
   const isLandingPage = !showFoodLibrary && 
                        !showAICoach && 
                        !showIdealWeight && 
@@ -66,49 +68,24 @@ function App() {
                        !showAuth &&
                        !showQuickTools;
 
-  // Show header on landing page or when FoodTracker is open
-  const shouldShowHeader = isLandingPage || showFoodTracker;
-
   return (
     <div className="min-h-screen gradient-bg relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-20 right-10 w-32 h-32 bg-yellow-400/20 rounded-full blur-3xl"></div>
       <div className="absolute bottom-40 left-10 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl"></div>
       
-      {/* Show header on landing page or when FoodTracker is open */}
-      {shouldShowHeader && (
+      {/* Only show header on landing page - hide when any quick tool is open */}
+      {isLandingPage && (
         <Header 
           onLoginClick={() => setShowAuth(true)} 
           onDashboardClick={() => {
-            // Close any other open views first
-            setShowFoodLibrary(false);
-            setShowAICoach(false);
-            setShowIdealWeight(false);
-            setShowCuisinePrefs(false);
-            setShowMealRecommendations(false);
-            
             if (userData) {
               setShowFoodTracker(true);
             } else {
-              // If no user data, start the workflow
-              setShowIdealWeight(true);
+              setShowAuth(true);
             }
           }}
-          onAskSlayAI={() => {
-            if (showFoodTracker) {
-              setShowFoodTracker(false);
-            }
-            setShowAICoach(true);
-          }}
-          onLogoClick={() => {
-            // Reset to landing page
-            setShowFoodTracker(false);
-            setShowFoodLibrary(false);
-            setShowAICoach(false);
-            setShowIdealWeight(false);
-            setShowCuisinePrefs(false);
-            setShowMealRecommendations(false);
-          }}
+          onAskSlayAI={() => setShowAICoach(true)}
         />
       )}
       
@@ -123,6 +100,32 @@ function App() {
             />
             <Footer onTalkToAI={() => setShowAICoach(true)} />
           </>
+        ) : showIdealWeight ? (
+          <IdealWeightCalculator
+            onClose={() => setShowIdealWeight(false)}
+            onComplete={handleWeightCalcComplete}
+          />
+        ) : showCuisinePrefs ? (
+          <CuisinePreferences
+            onClose={() => setShowCuisinePrefs(false)}
+            userData={userData}
+            onComplete={handleCuisinePrefsComplete}
+          />
+        ) : showMealRecommendations && userPreferences ? (
+          <MealRecommendations
+            onClose={handleMealRecommendationsComplete}
+            userData={userData}
+            preferences={userPreferences}
+            onLogin={() => {
+              setShowMealRecommendations(false);
+              setShowAuth(true);
+            }}
+          />
+        ) : showFoodTracker ? (
+          <FoodTracker
+            userData={userData}
+            onClose={() => setShowFoodTracker(false)}
+          />
         ) : showFoodLibrary ? (
           <FoodLibrary 
             onClose={() => setShowFoodLibrary(false)} 
@@ -145,43 +148,8 @@ function App() {
           />
         )}
       </AnimatePresence>
-
-      {showIdealWeight && (
-        <IdealWeightCalculator
-          onClose={() => setShowIdealWeight(false)}
-          onComplete={handleWeightCalcComplete}
-        />
-      )}
-
-      {showCuisinePrefs && (
-        <CuisinePreferences
-          onClose={() => setShowCuisinePrefs(false)}
-          userData={userData}
-          onComplete={handleCuisinePrefsComplete}
-        />
-      )}
-
-      {showMealRecommendations && userPreferences && (
-        <MealRecommendations
-          onClose={handleMealRecommendationsComplete}
-          userData={userData}
-          preferences={userPreferences}
-          onLogin={() => {
-            setShowMealRecommendations(false);
-            setShowAuth(true);
-          }}
-        />
-      )}
-
-      {showFoodTracker && (
-        <FoodTracker
-          userData={userData}
-          onClose={() => setShowFoodTracker(false)}
-        />
-      )}
     </div>
   );
 }
 
 export default App;
-
