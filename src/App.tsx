@@ -28,6 +28,8 @@ function App() {
   const handleTryNow = () => {
     // Skip auth and go directly to the workflow
     setShowIdealWeight(true);
+    // Scroll to top to show the workflow
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleAuthSuccess = (isGuest: boolean) => {
