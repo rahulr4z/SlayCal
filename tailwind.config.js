@@ -11,7 +11,6 @@ export default {
         secondary: '#8B5CF6', // Purple
         accent: '#EC4899', // Pink
         orange: '#FF6B35', // Orange
-        yellow: '#FFD93D', // Yellow
       },
       fontFamily: {
         heading: ['"Schoolbell"', 'cursive'],
