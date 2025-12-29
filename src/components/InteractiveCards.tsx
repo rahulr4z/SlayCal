@@ -293,7 +293,7 @@ export default function InteractiveCards({ onQuickToolToggle, onOpenFoodLibrary 
                 <motion.div
                   animate={{ scale: [1, 1.25, 1], rotate: [0, -10, 10, 0] }}
                   transition={{ duration: 2.2, repeat: Infinity }}
-                  className="absolute -top-3 -left-3 z-20 w-18 h-18 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white"
+                  className="absolute -top-3 -left-3 z-20 w-18 h-18 bg-gradient-to-br from-yellow-500 to-yellow-400 rounded-full flex items-center justify-center shadow-xl border-4 border-white"
                 >
                   <span className="text-3xl">⚖️</span>
                 </motion.div>
@@ -301,7 +301,7 @@ export default function InteractiveCards({ onQuickToolToggle, onOpenFoodLibrary 
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-white rounded-b-2xl z-10"></div>
                 
                 {/* Screen */}
-                <div className="bg-gradient-to-br from-orange-500/30 to-red-500/30 rounded-[2.5rem] overflow-hidden border-2 border-gray-200">
+                <div className="bg-gradient-to-br from-yellow-500/30 to-yellow-400/30 rounded-[2.5rem] overflow-hidden border-2 border-gray-200">
                   {/* Status Bar */}
                   <div className="flex justify-between items-center px-6 pt-8 pb-2 text-gray-700 text-xs font-medium">
                     <span>9:41</span>
@@ -333,11 +333,11 @@ export default function InteractiveCards({ onQuickToolToggle, onOpenFoodLibrary 
                         <span key={i} className="text-2xl">{emoji}</span>
                       ))}
                     </div>
-                    <div className="mt-auto bg-gradient-to-br from-pink-100/90 to-orange-100/90 rounded-xl p-6 border border-pink-200/50 shadow-lg">
+                    <div className="mt-auto bg-white/80 rounded-xl p-6 border border-gray-200 shadow-lg">
                       <div className="text-center">
-                        <div className="text-4xl font-bold text-orange-500 mb-2">VS</div>
-                        <div className="text-sm text-gray-700 font-medium">Side by Side</div>
-                        <div className="text-xs text-gray-600 mt-1">Nutrition Comparison</div>
+                        <div className="text-4xl font-bold text-yellow-500 mb-2">VS</div>
+                        <div className="text-sm text-gray-600 font-medium">Side by Side</div>
+                        <div className="text-xs text-gray-500 mt-1">Nutrition Comparison</div>
                       </div>
                     </div>
                   </div>

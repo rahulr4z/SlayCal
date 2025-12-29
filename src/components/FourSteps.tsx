@@ -24,9 +24,9 @@ const steps = [
     number: 3,
     title: 'Your food recommendations',
     icon: Lightbulb,
-    color: 'orange',
-    borderColor: 'border-orange-400',
-    badgeColor: 'bg-orange-500',
+    color: 'yellow',
+    borderColor: 'border-yellow-400',
+    badgeColor: 'bg-yellow-500',
   },
   {
     number: 4,
